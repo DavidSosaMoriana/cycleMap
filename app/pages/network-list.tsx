@@ -1,50 +1,75 @@
 "use client";
 
-import { Building2, ChevronRight, MapPin } from "lucide-react";
-import Link from "next/link";
-import { Network } from "../types/network";
-import { Badge } from "@/components/ui/badge";
+import { useNetwork } from "../context/NetworkContext";
+import { MapPin, Building2, ChevronRight } from "lucide-react";
+import { useState } from "react";
+import { Pagination } from "./Pagination";
 
-interface NetworkListProps {
-  networks?: Network[];
-}
+export default function NetworkList() {
+  const { networks, loading, error } = useNetwork();
+  const [currentPage, setCurrentPage] = useState(1);
+  const networksPerPage = 5;
 
-export function NetworkList({ networks = [] }: NetworkListProps) {
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+
+  const indexOfLastNetwork = currentPage * networksPerPage;
+  const indexOfFirstNetwork = indexOfLastNetwork - networksPerPage;
+  const currentNetworks = networks.slice(
+    indexOfFirstNetwork,
+    indexOfLastNetwork
+  );
+  const totalPages = Math.ceil(networks.length / networksPerPage);
+
   return (
-    <div className="space-y-4">
-      {networks.map((network) => (
-        <Link
-          key={network.id}
-          href={`/network/${network.id}`}
-          className="block p-4 border rounded-lg hover:bg-muted/50 transition-colors"
-        >
-          <div className="flex justify-between items-start">
-            <div>
-              <h2 className="font-semibold text-lg">{network.name}</h2>
-              <div className="flex items-center gap-1 text-muted-foreground mt-1">
-                <MapPin className="h-4 w-4" />
-                <span>
-                  {network.location.city}, {network.location.country}
-                </span>
-              </div>
-              <div className="flex items-center gap-1 text-muted-foreground mt-1">
-                <Building2 className="h-4 w-4" />
-                <div className="flex items-center gap-2">
-                  {network.companies.slice(0, 2).map((company, i) => (
-                    <span key={i}>{company.name}</span>
-                  ))}
-                  {network.companies.length > 2 && (
-                    <Badge variant="secondary">
-                      +{network.companies.length - 2}
-                    </Badge>
-                  )}
+    <div className="space-y-6">
+      <div className="space-y-0">
+        {currentNetworks.map((network, index) => (
+          <div key={network.id}>
+            <div className="py-4 hover:bg-indigo-50/50 group rounded-lg -mx-4 px-4 transition-colors cursor-pointer">
+              <div className="flex justify-between items-center">
+                <div className="space-y-2">
+                  <h3 className="text-indigo-900 font-semibold">
+                    {network.name}
+                  </h3>
+                  <div className="flex items-center gap-2">
+                    <MapPin className="h-4 w-4 text-gray-400" />
+                    <span className="text-gray-500 text-sm">
+                      {network.location.city}, {network.location.country}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1.5">
+                      <Building2 className="h-4 w-4 text-gray-400" />
+                      <span className="text-sm text-gray-500">
+                        Company name 1, Company na...
+                      </span>
+                    </div>
+                    <div className="h-5 px-1.5 rounded bg-gray-100 text-gray-500 text-xs flex items-center">
+                      +2
+                    </div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="text-[#FF6B3D] opacity-0 group-hover:opacity-100 transition-opacity text-sm font-medium">
+                    Details
+                  </span>
+                  <ChevronRight className="h-5 w-5 text-[#FF6B3D] opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
               </div>
             </div>
-            <ChevronRight className="h-5 w-5 text-muted-foreground" />
+            {index < currentNetworks.length - 1 && (
+              <div className="h-px bg-gray-300 -mx-4" />
+            )}
           </div>
-        </Link>
-      ))}
+        ))}
+      </div>
+
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={setCurrentPage}
+      />
     </div>
   );
 }
