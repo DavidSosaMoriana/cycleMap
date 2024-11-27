@@ -13,22 +13,7 @@ export interface Network {
   location: Location;
 }
 
-interface Station {
-  id: string;
-  name: string;
-  latitude: number;
-  longitude: number;
-  free_bikes: number;
-  empty_slots: number;
-  timestamp: string;
-}
 export interface Country {
   code: string;
   name: string;
-}
-
-interface NetworkDetails {
-  network: {
-    stations: Station[];
-  } & Network;
 }
