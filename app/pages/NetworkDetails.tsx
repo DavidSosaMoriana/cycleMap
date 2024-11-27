@@ -42,7 +42,7 @@ export function NetworkDetails({ networkId }: NetworkDetailsProps) {
     async function fetchNetworkDetails() {
       try {
         const response = await fetch(
-          `http://api.citybik.es/v2/networks/${networkId}`
+          `https://api.citybik.es/v2/networks/${networkId}`
         );
         const data = await response.json();
         setNetworkData(data);
