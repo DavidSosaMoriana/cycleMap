@@ -6,6 +6,7 @@ interface Props {
   };
 }
 
-export default function NetworkDetailsPage({ params }: Props) {
-  return <NetworkDetails networkId={params.id} />;
+export default async function NetworkDetailsPage({ params }: Props) {
+  const { id } = await params
+  return <NetworkDetails networkId={id} />;
 }
