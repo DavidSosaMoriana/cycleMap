@@ -62,13 +62,13 @@ npm run dev
 
 ## Key Features Implementation
 
-# Network List View
+## Network List View
 - Display all bike networks with pagination
 - Shows network details including location and company info
 - Implements search and country filtering
 - Hover states and interactive elements
 
-##Network Details View
+## Network Details View
 - Sidebar layout with network information
 - Interactive map showing all stations
 - Sortable station list
