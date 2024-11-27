@@ -1,36 +1,99 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
 
-First, run the development server:
+## CycleMap 🚲
+
+A React application built with Next.js that helps users discover bike-sharing networks worldwide using the CityBikes API.
+
+## Features
+- View bike networks on an interactive map
+- Search networks by name
+- Filter networks by country
+- View detailed network information including:
+    - Station locations
+    - Real-time bike availability
+    - Empty slots per station
+    - Sortable station list
+    - Station-specific information on map markers
+
+## Tech Stack
+- **Framework**: Next.js 14 with TypeScript
+- **Styling**: Tailwind CSS, shadcn/ui
+- **Mapping**: Mapbox GL JS
+- **State Management**: React Context
+- **API**: CityBikes API
+
+- ##Project Structure
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+├── app/
+│   ├── page.tsx                # Main page
+│   └── networks/
+│       └── [id]/              # Network details page
+├── components/
+│   ├── Logo.tsx               # Logo component
+│   ├── NetworkList.tsx        # Network listing component
+│   ├── NetworkDetails.tsx     # Network details view
+│   ├── Pagination.tsx         # Pagination component
+│   ├── SearchFilters.tsx      # Search and filter components
+│   └── Map.tsx               # Mapbox implementation
+├── context/
+│   └── NetworkContext.tsx     # Network data management
+├── types/
+│   └── index.ts              # TypeScript definitions
+└── data/
+    └── countries.json        # Countries data
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+##Setup Intructions
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clone the repository
+2. Install dependencies
+```bash
+npm install
+```
+3. Create .env.local and add you Mapbox token:
+```bash
+NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=your_token_here
+```
+4.Run development server
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+##Key Features Implementation
 
-## Learn More
+##Network List View
+- Display all bike networks with pagination
+- Shows network details including location and company info
+- Implements search and country filtering
+- Hover states and interactive elements
 
-To learn more about Next.js, take a look at the following resources:
+##Network Details View
+- Sidebar layout with network information
+- Interactive map showing all stations
+- Sortable station list
+- Real-time availability data
+- Station markers with popup information
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+##Map Integration
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Custom markers for stations
+- Interactive popups
+- Automatic bounds fittins
+- Responsive zoom levels
+- Custom styling
 
-## Deploy on Vercel
+##Api Integration
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Uses CityBiks API endpoints:
+  - /networks - List all networks
+  - /networks/{network_id} - Get specific network details
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+##Styling
+
+- Uses Tailwind CSS for styling
+- Custom components from shadcn/ui
+- Consistent color scheme:
+   - Primary: Indigo (#4F46E5)
+   - Accent: Orange (#FF6B3D)
+   - Various gray scales for text and borders
