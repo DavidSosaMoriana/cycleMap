@@ -23,6 +23,14 @@ export default function NetworkList() {
   );
   const totalPages = Math.ceil(filteredNetworks.length / networksPerPage);
 
+  if (filteredNetworks.length === 0) {
+    return (
+      <div className="text-center py-8 text-gray-500">
+        No bike networks found for the selected filters.
+      </div>
+    );
+  }
+
   const handleNetworkClick = (networkId: string) => {
     router.push(`/networks/${networkId}`);
   };
