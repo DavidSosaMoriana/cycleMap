@@ -32,7 +32,7 @@ export function NetworkProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     async function fetchNetworks() {
       try {
-        const response = await fetch("http://api.citybik.es/v2/networks");
+        const response = await fetch("https://api.citybik.es/v2/networks");
         const data = await response.json();
         setNetworks(data.networks);
       } catch (err) {
