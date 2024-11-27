@@ -22,7 +22,7 @@ A React application built with Next.js that helps users discover bike-sharing ne
 - **State Management**: React Context
 - **API**: CityBikes API
 
-- ##Project Structure
+- ## Project Structure
 
 ```bash
 ├── app/
@@ -44,7 +44,7 @@ A React application built with Next.js that helps users discover bike-sharing ne
     └── countries.json        # Countries data
 ```
 
-##Setup Intructions
+## Setup Intructions
 
 1. Clone the repository
 2. Install dependencies
@@ -60,9 +60,9 @@ NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=your_token_here
 npm run dev
 ```
 
-##Key Features Implementation
+## Key Features Implementation
 
-##Network List View
+## Network List View
 - Display all bike networks with pagination
 - Shows network details including location and company info
 - Implements search and country filtering
@@ -75,7 +75,7 @@ npm run dev
 - Real-time availability data
 - Station markers with popup information
 
-##Map Integration
+## Map Integration
 
 - Custom markers for stations
 - Interactive popups
@@ -83,13 +83,13 @@ npm run dev
 - Responsive zoom levels
 - Custom styling
 
-##Api Integration
+## Api Integration
 
 Uses CityBiks API endpoints:
   - /networks - List all networks
   - /networks/{network_id} - Get specific network details
 
-##Styling
+## Styling
 
 - Uses Tailwind CSS for styling
 - Custom components from shadcn/ui
