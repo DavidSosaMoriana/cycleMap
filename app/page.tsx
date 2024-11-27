@@ -1,6 +1,3 @@
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { MapPin } from "lucide-react";
 import MapWrapper from "./pages/MapWrapper";
 import NetworkList from "./pages/network-list";
 import { NetworkProvider } from "./context/NetworkContext";

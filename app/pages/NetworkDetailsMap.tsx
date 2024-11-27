@@ -51,7 +51,7 @@ export function NetworkDetailsMap({ stations, center }: NetworkDetailsMapProps) 
     return () => {
       map.current?.remove();
     };
-  }, []);
+  }, [center, stations]);
 
   useEffect(() => {
     if (!map.current) return;
