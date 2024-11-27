@@ -34,16 +34,13 @@ export default function Map() {
   useEffect(() => {
     if (!map.current) return;
 
-    // Clear existing markers
     markersRef.current.forEach((marker) => marker.remove());
     markersRef.current = [];
 
-    // If we have filtered networks, adjust the map view
     if (filteredNetworks.length > 0) {
       const bounds = new mapboxgl.LngLatBounds();
 
       filteredNetworks.forEach((network) => {
-        // Create custom marker element
         const el = document.createElement("div");
         el.className = "custom-marker";
         el.style.width = "12px";
@@ -65,7 +62,6 @@ export default function Map() {
           </div>`
         );
 
-        // Add marker to map
         const marker = new mapboxgl.Marker({
           element: el,
           anchor: "center",
@@ -76,11 +72,9 @@ export default function Map() {
 
         markersRef.current.push(marker);
 
-        // Extend bounds to include this point
         bounds.extend([network.location.longitude, network.location.latitude]);
       });
 
-      // If we have points, fit the map to them
       if (!bounds.isEmpty()) {
         map.current.fitBounds(bounds, {
           padding: 50,
@@ -89,7 +83,6 @@ export default function Map() {
         });
       }
     } else {
-      // Reset to world view if no networks are selected
       map.current.flyTo({
         center: [0, 20],
         zoom: 2,
