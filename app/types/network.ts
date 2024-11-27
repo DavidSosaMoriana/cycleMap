@@ -5,7 +5,7 @@ interface Location {
   country: string;
 }
 
-interface Network {
+export interface Network {
   id: string;
   name: string;
   company: string[];
@@ -21,6 +21,10 @@ interface Station {
   free_bikes: number;
   empty_slots: number;
   timestamp: string;
+}
+export interface Country {
+  code: string;
+  name: string;
 }
 
 interface NetworkDetails {

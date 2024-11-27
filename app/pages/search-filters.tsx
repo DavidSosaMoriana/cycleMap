@@ -11,8 +11,13 @@ import {
 } from "@/components/ui/select";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback } from "react";
+import { Country } from "../types/network";
 
-export function SearchFilters() {
+interface SearchFiltersProps {
+  countries: Country[];
+}
+
+export function SearchFilters({ countries }: SearchFiltersProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -44,15 +49,16 @@ export function SearchFilters() {
           router.push(`?${createQueryString("country", value)}`);
         }}
       >
-        <SelectTrigger className="w-[140px]">
+        <SelectTrigger className="w-[180px]">
           <MapPin className="h-4 w-4" />
           <SelectValue placeholder="Country" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="ES">Spain</SelectItem>
-          <SelectItem value="DK">Denmark</SelectItem>
-          <SelectItem value="US">United States</SelectItem>
-          <SelectItem value="UK">United Kingdom</SelectItem>
+          {countries.map((country) => (
+            <SelectItem key={country.code} value={country.code}>
+              {country.name}
+            </SelectItem>
+          ))}
         </SelectContent>
       </Select>
     </div>
