@@ -1,11 +1,9 @@
 import { NetworkDetails } from "@/app/pages/NetworkDetails";
 
-interface Props {
-  params: {
-    id: string;
-  };
-}
-
-export default function NetworkDetailsPage({ params }: Props) {
+export default function NetworkDetailsPage({
+  params,
+}: {
+  params: { id: string };
+}) {
   return <NetworkDetails networkId={params.id} />;
 }
