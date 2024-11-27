@@ -13,7 +13,11 @@ import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback } from "react";
 
-export function SearchFilters({ countries }) {
+interface Props {
+  countries: { name: string; code: string }[];
+}
+
+export function SearchFilters({ countries }: Props) {
   const [searchCountry, setSearchCountry] = useState("");
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -27,7 +31,7 @@ export function SearchFilters({ countries }) {
     [searchParams]
   );
 
-  const filteredCountries = countries.filter((country) =>
+  const filteredCountries = countries.filter((country: { name: string }) =>
     country.name.toLowerCase().includes(searchCountry.toLowerCase())
   );
 
